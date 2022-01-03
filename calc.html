@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Javascript Calculator</title>
+</head>
+<style>
+    p, input{ font-family: monospase;}
+    p {white-space : pre; }
+</style>
+<body>
+    <div id="myCalc">
+        <p>x <input type="text" class="calc-x-input" value="0"> </p>
+        <p>y <input type="text" class="calc-y-input" value="0"> </p>
+        <p>--------------------</p>
+        <p>= <span class="calc-result"></span></p>
+    </div>
+    <script>
+        (function(){
+            function Calc(xInput, yInput, output){
+                this.xInput = xInput;
+                this.yInput = yInput;
+                this.output = output;
+            }
+            Calc.xName = 'xInput';
+            Calc.yName = 'yInput';
+            Calc.prototype = {
+                render : function(result){
+                    this.output.innerText = String(result);
+                }
+            };
+            function CalcValue(calc, x, y){
+                this.calc = calc;
+                this. x = x;
+                thix. y = y;
+                this.result = x + y;
+            }
+            CalcValue.prototype = {
+                copyWith : function(name, value){
+                    var number = parseFloat(value);
+                    if(isNaN(number || !isFinite(number)))
+                        return this;
+                    if(name === Calc.xName)
+                        return new CalcValue(this.calc, number, this.y);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
